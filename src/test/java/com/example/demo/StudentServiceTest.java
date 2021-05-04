@@ -20,6 +20,9 @@ class StudentServiceTest {
         Student darth_vader = new Student("1", "Darth Vader");
         Student harry_potter = new Student("123", "Harry Potter");
 
+        studentService.addStudent(darth_vader);
+        studentService.addStudent(harry_potter);
+
         List<Student> studentList = studentService.getStudents();
 
         assertThat(studentList, containsInAnyOrder(harry_potter, darth_vader));
@@ -30,6 +33,9 @@ class StudentServiceTest {
         StudentService studentService = new StudentService();
         Student darth_vader = new Student("1", "Darth Vader");
         Student harry_potter = new Student("123", "Harry Potter");
+
+        studentService.addStudent(darth_vader);
+        studentService.addStudent(harry_potter);
 
         Optional<Student> optionalHarry = studentService.getStudentById(harry_potter.getId());
         Optional<Student> optionalDarthVader = studentService.getStudentById(darth_vader.getId());
@@ -43,10 +49,11 @@ class StudentServiceTest {
     @ParameterizedTest
     @CsvSource({"2, Tony Stark, true",
                 "3, Tony, false",
-                "1, Yoda, false"})
+                "123, Yoda, false"})
     void addStudent(String id, String name, boolean result) {
         StudentService studentService = new StudentService();
         Student student = new Student(id, name);
+        studentService.addStudent(new Student("123", "Harry Potter"));
 
         Optional<Student> optionalStudent = studentService.addStudent(student);
 
@@ -60,7 +67,11 @@ class StudentServiceTest {
     @Test
     void updateStudent() {
         StudentService studentService = new StudentService();
-        Student student = new Student("123", "Harry Propper");
+        Student student = new Student("123", "Harry Potter");
+
+        studentService.addStudent(student);
+
+        student.setName("Harry Propper");
 
         Optional<Student> optionalStudent = studentService.updateStudent(student);
 
