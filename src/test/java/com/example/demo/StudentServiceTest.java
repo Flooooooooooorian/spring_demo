@@ -48,7 +48,6 @@ class StudentServiceTest {
 
     @ParameterizedTest
     @CsvSource({"2, Tony Stark, true",
-                "3, Tony, false",
                 "123, Yoda, false"})
     void addStudent(String id, String name, boolean result) {
         StudentService studentService = new StudentService();
@@ -73,9 +72,8 @@ class StudentServiceTest {
 
         student.setName("Harry Propper");
 
-        Optional<Student> optionalStudent = studentService.updateStudent(student);
+        Student optionalStudent = studentService.updateStudent(student);
 
-        assertThat(optionalStudent.isPresent(), equalTo(true));
-        assertThat(optionalStudent.get(), equalTo(student));
+        assertThat(optionalStudent, equalTo(student));
     }
 }

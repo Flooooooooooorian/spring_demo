@@ -56,12 +56,6 @@ public class StudentController {
         if (!student.getId().equals(id)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Id not valid");
         }
-        Optional<Student> optionalStudent = this.studentService.updateStudent(student);
-        if (optionalStudent.isPresent()) {
-            return optionalStudent.get();
-        }
-        else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Id not valid");
-        }
+        return this.studentService.updateStudent(student);
     }
 }
