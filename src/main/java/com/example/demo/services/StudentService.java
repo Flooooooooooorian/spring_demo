@@ -33,7 +33,7 @@ public class StudentService {
         List<Student> students = new ArrayList<>();
 
         for (Student student : this.students.values()) {
-            if (student.getName().equals(name)) {
+            if (student.getName().equalsIgnoreCase(name)) {
                 students.add(student);
             }
         }
