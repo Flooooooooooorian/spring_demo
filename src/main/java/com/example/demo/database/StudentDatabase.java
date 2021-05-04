@@ -31,4 +31,8 @@ public class StudentDatabase {
         }
         return students;
     }
+
+    public Student deleteStudent(String id) {
+        return students.remove(id);
+    }
 }

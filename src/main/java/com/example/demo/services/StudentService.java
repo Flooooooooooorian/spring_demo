@@ -39,4 +39,9 @@ public class StudentService {
     public Student updateStudent(Student student) {
         return studentDb.addStudent(student);
     }
+
+    public boolean deleteStudent(String id) {
+        Student removedStudent = studentDb.deleteStudent(id);
+        return removedStudent != null;
+    }
 }

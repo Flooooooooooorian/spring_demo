@@ -58,4 +58,9 @@ public class StudentController {
         }
         return this.studentService.updateStudent(student);
     }
+
+    @DeleteMapping("{id}")
+    public boolean deleteStudent(@PathVariable String id){
+        return studentService.deleteStudent(id);
+    }
 }
